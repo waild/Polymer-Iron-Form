@@ -1,0 +1,41 @@
+﻿<dom-module id="new-employee-form">
+    <template>
+        <style is="custom-style">
+
+        </style>
+        <iron-form>
+            <form method="get" id="form" action="/Employee/addNewEmployee" method="post">
+                <label>Enter your name</label>
+                <paper-input name="name"></paper-input>
+                <label>Describe your position</label>
+                <paper-textarea name="position"></paper-textarea>
+                <label>Select one of:</label>
+                <select name="disposition" style="width:100%;" value="1">
+                    <option value="1">Temporary</option>
+                    <option value="2">Permanent</option>
+                    <option value="3">Contractor</option>
+                </select>
+            </form>
+        </iron-form>
+        <paper-button on-tap="onSubmit">Submit</paper-button>
+    </template>
+    <script>
+        Polymer({
+            is: "new-employee-form",
+            properties: {
+                info: {
+                    type: Object,
+                    notify: true
+                }
+            },
+            onSubmit() {
+                let data = {
+                    name: this.$.form.name.value,
+                    position: this.$.form.position.value,
+                    disposition: this.$.form.disposition.value
+                };
+                $.post(this.$.form.action, data);
+            }
+        });
+    </script>
+</dom-module>

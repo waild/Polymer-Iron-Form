@@ -1,0 +1,6 @@
+bower_components
+/Polymer.IronForm/node_modules
+/Polymer.IronForm/wwwroot/lib
+/.vs
+/Polymer.IronForm/bin
+/Polymer.IronForm/obj
