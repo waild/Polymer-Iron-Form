@@ -18,23 +18,31 @@
             </form>
         </iron-form>
         <paper-button on-tap="onSubmit">Submit</paper-button>
+        <iron-ajax id="ajaxPost"
+                   url="https://localhost:44346/employee/addNewEmployee"
+                   body='{{body}}'
+                   handle-as="json"
+                   method="POST"
+                   content-type="application/x-www-form-urlencoded"></iron-ajax>
     </template>
     <script>
         Polymer({
             is: "new-employee-form",
             properties: {
-                info: {
+                body: {
                     type: Object,
                     notify: true
                 }
             },
             onSubmit() {
-                let data = {
-                    name: this.$.form.name.value,
-                    position: this.$.form.position.value,
-                    disposition: this.$.form.disposition.value
+                var self = this;
+                var data = {
+                    Name: this.$.form.name.value,
+                    Position: this.$.form.position.value,
+                    Disposition: this.$.form.disposition.value
                 };
-                $.post(this.$.form.action, data);
+                self.body = data;
+                self.$.ajaxPost.generateRequest();
             }
         });
     </script>
